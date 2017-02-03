@@ -16,8 +16,24 @@ class Plugin extends PluginLib\AbstractPlugin implements PluginLib\PluginInterfa
         return FALSE;
     }
 
+    public static function getConfig()
+    {
+        if (!self::isInstalled()) {
+            return FALSE;
+        }
+
+        return include(self::getConfigFilePath());
+    }
+
     public static function install()
     {
+        if (self::isInstalled()) {
+            return FALSE;
+        }
+
+        $data = ['authKey' => NULL];
+        \Pimcore\File::putPhpFile(self::getConfigFilePath(), to_php_data_file_format($data));
+
         return TRUE;
     }
 
@@ -28,6 +44,11 @@ class Plugin extends PluginLib\AbstractPlugin implements PluginLib\PluginInterfa
 
     public static function isInstalled()
     {
-        return TRUE;
+        return is_file(self::getConfigFilePath());
+    }
+
+    private static function getConfigFilePath()
+    {
+        return PIMCORE_CONFIGURATION_DIRECTORY . '/monitoring_configuration.php';
     }
 }

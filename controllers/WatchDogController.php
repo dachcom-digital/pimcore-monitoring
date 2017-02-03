@@ -1,19 +1,19 @@
 <?php
 
 use Monitoring\Model\WatchDog;
+use Monitoring\Plugin;
 
 class Monitoring_WatchDogController extends \Pimcore\Controller\Action\Admin
 {
     public function init()
     {
-        if (!WatchDog::checkAuth($this->getParam('secret', FALSE))) {
+        if (!Plugin::isInstalled() || !WatchDog::checkAuth($this->getParam('secret', FALSE))) {
             $this
                 ->getResponse()
                 ->clearHeaders()
                 ->setHttpResponseCode(403)
                 ->appendBody('Forbidden')
                 ->sendResponse();
-
             exit;
         }
 

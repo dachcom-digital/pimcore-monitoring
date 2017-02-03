@@ -2,18 +2,22 @@
 
 namespace Monitoring\Model;
 
+use \Pimcore\ExtensionManager;
+use \Pimcore\Version;
+
 class WatchDog
 {
     public static function checkAuth($key = NULL)
     {
-        return $key === 'XXX';
+        $config = \Monitoring\Plugin::getConfig();
+        return isset($config['authKey']) && $config['authKey'] === $key;
     }
 
     public static function getCoreInfo()
     {
         return [
-            'version'  => \Pimcore\Version::getVersion(),
-            'revision' => \Pimcore\Version::getRevision()
+            'version'  => Version::getVersion(),
+            'revision' => Version::getRevision()
         ];
     }
 
@@ -21,7 +25,7 @@ class WatchDog
     {
         $extensions = [];
 
-        foreach (\Pimcore\ExtensionManager::getPluginConfigs() as $extension) {
+        foreach (ExtensionManager::getPluginConfigs() as $extension) {
             if (!isset($extension['plugin'])) {
                 continue;
             }
@@ -33,7 +37,7 @@ class WatchDog
                 'description' => $pluginInfo['pluginDescription'],
                 'version'     => strtolower($pluginInfo['pluginVersion']),
                 'revision'    => strtolower($pluginInfo['pluginRevision']),
-                'isLoaded'    => \Pimcore\ExtensionManager::isEnabled('plugin', $pluginInfo['pluginName'])
+                'isLoaded'    => ExtensionManager::isEnabled('plugin', $pluginInfo['pluginName'])
             ];
         }
 
@@ -44,11 +48,14 @@ class WatchDog
     {
         $bricks = [];
 
-        foreach (\Pimcore\ExtensionManager::getBrickConfigs() as $brickName => $brickInfo) {
+        foreach (ExtensionManager::getBrickConfigs() as $brickName => $brickInfo) {
+
+            $brickInfo = $brickInfo->toArray();
 
             $bricks[strtolower($brickName)] = [
-                'title'       => $brickName,
-                'isLoaded'    => \Pimcore\ExtensionManager::isEnabled('brick', $brickName)
+                'title'    => $brickName,
+                'version'  => isset($brickInfo['version']) ? $brickInfo['version'] : NULL,
+                'isLoaded' => ExtensionManager::isEnabled('brick', $brickName)
             ];
         }
 
