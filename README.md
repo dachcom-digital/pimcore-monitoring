@@ -16,3 +16,9 @@
     "dachcom-digital/pimcore-monitoring" : "1.0.0",
 }
 ```
+
+## Fetch Data
+
+```php
+GET /plugin/Monitoring/WatchDog/fetch?secret=yourAuthKey
+```
