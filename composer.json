@@ -1,5 +1,5 @@
 {
-    "name": "dachcom-digital/pimcore-monitoring",
+    "name": "dachcom-digital/monitoring",
     "type": "pimcore-plugin",
     "homepage": "https://github.com/dachcom-digital/pimcore-monitoring",
     "authors": [

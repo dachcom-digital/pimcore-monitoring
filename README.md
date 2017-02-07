@@ -13,12 +13,12 @@
 
 ```json
 "require" : {
-    "dachcom-digital/pimcore-monitoring" : "1.0.0",
+    "dachcom-digital/monitoring" : "1.0.0",
 }
 ```
 
 ## Fetch Data
 
 ```php
-GET /plugin/Monitoring/WatchDog/fetch?secret=yourAuthKey
+GET /plugin/Monitoring/watch-dog/fetch?secret=yourAuthKey
 ```
