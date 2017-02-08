@@ -1,6 +1,9 @@
 {
     "name": "dachcom-digital/monitoring",
     "type": "pimcore-plugin",
+    "license": "GPL-3.0+",
+    "description": "Pimcore 4.x Monitoring Tool",
+    "keywords": ["monitoring", "backend", "icinga", "pimcore-monitoring"],
     "homepage": "https://github.com/dachcom-digital/pimcore-monitoring",
     "authors": [
         {

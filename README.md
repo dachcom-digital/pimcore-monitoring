@@ -18,7 +18,10 @@
 ```
 
 ## Fetch Data
-
 ```php
 GET /plugin/Monitoring/watch-dog/fetch?secret=yourAuthKey
 ```
+
+## Copyright and license
+Copyright: [DACHCOM.DIGITAL](http://dachcom-digital.ch)  
+For licensing details please visit [LICENSE.md](LICENSE.md)  
