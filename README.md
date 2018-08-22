@@ -1,19 +1,13 @@
 # Pimcore Monitoring
 
-## Installation
-**Handcrafted Installation**   
-1. Download Plugin  
-2. Rename it to `Monitoring`  
-3. Place it in your plugin directory  
-4. Activate & install it through backend 
+#### Requirements
+* Pimcore 5.
 
-**Composer Installation**  
-1. Add code below to your `composer.json`    
-2. Activate & install it through backend
+## Installation
 
 ```json
-"require" : {
-    "dachcom-digital/monitoring" : "1.0.0",
+"require": {
+    "dachcom-digital/monitoring" : "~2.0.0",
 }
 ```
 

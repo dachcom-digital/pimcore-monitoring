@@ -1,19 +1,34 @@
 {
     "name": "dachcom-digital/monitoring",
-    "type": "pimcore-plugin",
-    "license": "GPL-3.0+",
-    "description": "Pimcore 4.x Monitoring Tool",
-    "keywords": ["monitoring", "backend", "icinga", "pimcore-monitoring"],
+    "type": "pimcore-bundle",
+    "license": "GPL-3.0-or-later",
+    "description": "Pimcore 5.x Monitoring - get monitoring information",
+    "keywords": [
+        "pimcore",
+        "monitoring"
+    ],
     "homepage": "https://github.com/dachcom-digital/pimcore-monitoring",
     "authors": [
         {
-            "name": "DACHCOM.DIGITAL Stefan Hagspiel",
-            "email": "shagspiel@dachcom.ch",
+            "name": "DACHCOM.DIGITAL Manuel Hartung",
+            "email": "mhartzung@dachcom.ch",
             "homepage": "http://www.dachcom.com/",
             "role": "Developer"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "FormBuilderBundle\\": "src/MonitoringBundle"
+        }
+    },
+    "extra": {
+        "pimcore": {
+            "bundles": [
+                "MonitoringBundle\\MonitoringBundle"
+            ]
+        }
+    },
     "require": {
-        "pimcore/installer-plugin": ">=1"
+        "pimcore/core-version": "^5.1.0"
     }
 }
