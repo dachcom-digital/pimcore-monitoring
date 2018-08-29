@@ -3,11 +3,18 @@
 namespace MonitoringBundle;
 
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
+use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
+/**
+ * Class MonitoringBundle
+ *
+ * @package MonitoringBundle
+ */
 class MonitoringBundle extends AbstractPimcoreBundle
 {
-    const BUNDLE_VERSION = '2.0.0';
+    use PackageVersionTrait;
+
     /**
      * @param ContainerBuilder $container
      */
@@ -15,11 +22,13 @@ class MonitoringBundle extends AbstractPimcoreBundle
     {
         parent::build($container);
     }
+
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
-    public function getVersion()
+    protected function getComposerPackageName(): string
     {
-        return self::BUNDLE_VERSION;
+        return 'dachcom-digital/monitoring';
     }
+
 }

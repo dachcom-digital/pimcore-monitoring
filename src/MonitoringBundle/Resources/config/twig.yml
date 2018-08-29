@@ -1,0 +1,8 @@
+#twig:
+#    globals:
+#        i18n: '@dachcom.templating.i18n'
+#
+#twig:
+#    paths:
+#        - '%kernel.project_dir%/lib/pimcore-monitoring/src/MonitoringBundle/Resources/views': MonitoringBundle
+#        - '/Resources/views': MonitoringBundle

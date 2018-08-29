@@ -1,0 +1,4 @@
+_pimcore_monitoring:
+    resource: "@MonitoringBundle/Controller/"
+    type:     annotation
+    methods: [GET]

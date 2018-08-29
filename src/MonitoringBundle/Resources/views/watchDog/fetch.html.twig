@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="robots" content="noindex">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+        <title>Pimcore5 Monitoring</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row bg-primary text-white rounded-bottom">
+                <div class="col-12 mt-3 mb-3">
+                    <br/>
+                    <h2>Pimcore5 Monitoring</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <p>Here you will find details about Pimcore5, installed bundles and areabricks.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <br/>
+                    <h3>Pimcore Core details</h3>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <table class="table table-striped table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for key,value in data.core %}
+                                <tr>
+                                    <td>{{ key }}</td>
+                                    <td>{{ value }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mt-3"><h3>Bundles</h3></div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <table class="table table-striped table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Version</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Enabled</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entry in data.extensions %}
+                                <tr>
+                                    {% for value in entry %}
+                                        <td {% if loop.last %}class="text-center"{% endif %}>{{ value | split('\\') | join(' \\ ') }}</td> {#{{ for long ID's - only affects ID's }}#}
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mt-3"><h3>Areabricks</h3></div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <table class="table table-striped table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Loaded</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entry in data.bricks %}
+                                <tr>
+                                    {% for value in entry %}
+                                        <td {% if loop.last %}class="text-center"{% endif %}>{{ value }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

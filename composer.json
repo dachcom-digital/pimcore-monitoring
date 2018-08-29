@@ -11,14 +11,14 @@
     "authors": [
         {
             "name": "DACHCOM.DIGITAL Manuel Hartung",
-            "email": "mhartzung@dachcom.ch",
+            "email": "mhartung@dachcom.ch",
             "homepage": "http://www.dachcom.com/",
             "role": "Developer"
         }
     ],
     "autoload": {
         "psr-4": {
-            "FormBuilderBundle\\": "src/MonitoringBundle"
+            "MonitoringBundle\\": "src/MonitoringBundle"
         }
     },
     "extra": {
