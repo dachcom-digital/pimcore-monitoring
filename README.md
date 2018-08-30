@@ -4,28 +4,32 @@
 * Pimcore 5.
 
 ## Installation
-:information_source: Please pay attention to the [upgrade notes](./UPGRADE.md)
-
-Use composer to require dachcom-digital/monitoring or add it manually:
-
-```json
-"require": {
-    "dachcom-digital/monitoring" : "~2.0.0",
-}  
-```
+:information_source: Please pay attention to the [upgrade notes](./UPGRADE.md).
 
 Create the configuration for this service containing the authentication code (must be alphanumeric, also don't use special characters which will be encoded by the browser):
-
 ```yaml
-# app/config/monitoring.yml
+# app/config/monitoring.yaml
 monitoring:
-    api_code: 'putSomethingUniqueHere' 
+    api_code: 'putSomethingUniqueHere'
 ```
-
-Include routing
+and add it to your project-config:
+```yaml
+# app/config/config.yaml
+imports:
+    - { resource: monitoring.yaml }
+```
+Use composer to require dachcom-digital/monitoring or add it manually:
+```json
+{
+    "require": {
+        "dachcom-digital/monitoring" : "~2.0.0"
+    }
+}  
+```
+Include routing:
 ```json
 # app/config/routing.yml
-_monitoring:
+monitoring:
     resource: "@MonitoringBundle/Resources/config/routing.yml"
 ```
 
