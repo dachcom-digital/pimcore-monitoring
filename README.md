@@ -8,15 +8,15 @@
 
 Create the configuration for this service containing the authentication code (must be alphanumeric, also don't use special characters which will be encoded by the browser):
 ```yaml
-# app/config/monitoring.yaml
+# app/config/monitoring.yml
 monitoring:
     api_code: 'putSomethingUniqueHere'
 ```
 and add it to your project-config:
 ```yaml
-# app/config/config.yaml
+# app/config/config.yml
 imports:
-    - { resource: monitoring.yaml }
+    - { resource: monitoring.yml }
 ```
 Use composer to require dachcom-digital/monitoring or add it manually:
 ```json
@@ -28,9 +28,9 @@ Use composer to require dachcom-digital/monitoring or add it manually:
 ```
 Include routing:
 ```yaml
-# app/config/routing.yaml
+# app/config/routing.yml
 monitoring:
-    resource: "@MonitoringBundle/Resources/config/routing.yaml"
+    resource: "@MonitoringBundle/Resources/config/routing.yml"
 ```
 
 Enable the service/extension in pimcore-backend.
