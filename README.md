@@ -12,6 +12,12 @@ Use composer to require dachcom-digital/monitoring or add it manually:
 }  
 ```
 
+Add routing
+```json
+_monitoring:
+    resource: "@MonitoringBundle/Resources/config/routing.yml"
+```
+
 Enable the service/extension in pimcore-backend.
 
 Immediately create the configuration for this service containing the authentication key (must be alphanumeric, also don't use special characters which will be encoded by the browser):
