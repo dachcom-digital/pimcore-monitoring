@@ -27,10 +27,10 @@ Use composer to require dachcom-digital/monitoring or add it manually:
 }  
 ```
 Include routing:
-```json
-# app/config/routing.yml
+```yaml
+# app/config/routing.yaml
 monitoring:
-    resource: "@MonitoringBundle/Resources/config/routing.yml"
+    resource: "@MonitoringBundle/Resources/config/routing.yaml"
 ```
 
 Enable the service/extension in pimcore-backend.
@@ -65,8 +65,7 @@ with body-parameter apiCode=putSomethingUniqueHere
         "version": "2.6.1",
         "identifier": "ToolboxBundle\\ToolboxBundle",
         "isEnabled": true
-        },
-        ...
+        }
     ],
     "bricks": {
         "accordion": {
@@ -78,8 +77,8 @@ with body-parameter apiCode=putSomethingUniqueHere
             "description": "Toolbox Anchor",
             "name": "Anchor",
             "isEnabled": true
-        },
-    ...
+        }
+    }
 }
 ```
 ## Copyright and license
