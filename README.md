@@ -2,9 +2,10 @@
 
 #### Requirements
 * Pimcore 5.
-* check [upgrades](./UPGRADE.md)
 
 ## Installation
+:information_source: Please pay attention to the [upgrade notes](./UPGRADE.md)
+
 Use composer to require dachcom-digital/monitoring or add it manually:
 
 ```json
