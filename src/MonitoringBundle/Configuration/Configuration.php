@@ -25,8 +25,8 @@ class Configuration
     /**
      * @return mixed
      */
-    public function getApiKey()
+    public function getApiCode()
     {
-        return $this->config['api_key'];
+        return $this->config['api_code'];
     }
 }

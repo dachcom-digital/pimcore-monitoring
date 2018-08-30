@@ -71,7 +71,7 @@ class WatchDogController extends FrontendController
      */
     private function checkAuth(Request $request)
     {
-        $userSecret = $request->get('secret');
-        return (isset($userSecret) && $userSecret === $this->configuration->getApiKey());
+        $userSecret = $request->get('apiCode');
+        return (isset($userSecret) && $userSecret === $this->configuration->getApiCode());
     }
 }

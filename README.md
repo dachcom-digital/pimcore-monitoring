@@ -18,12 +18,16 @@ Immediately create the configuration for this service containing the authenticat
 
 ```yaml
 monitoring:
-    api_key: 'putSomethingUniqueHere'
+    api_code: 'putSomethingUniqueHere' 
 ```
 
 ## Fetch Data
 ```php
-GET /monitoring/fetch?secret=putSomethingUniqueHere
+POST /monitoring/fetch
+
+Content-Disposition: form-data; name="apiCode"
+
+putSomethingUniqueHere
 ```
 
 ## Output
