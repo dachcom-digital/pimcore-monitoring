@@ -2,6 +2,7 @@
 
 #### Requirements
 * Pimcore 5.
+* check [upgrades](./UPGRADE.md)
 
 ## Installation
 Use composer to require dachcom-digital/monitoring or add it manually:
@@ -12,37 +13,36 @@ Use composer to require dachcom-digital/monitoring or add it manually:
 }  
 ```
 
-Add routing
+Create the configuration for this service containing the authentication code (must be alphanumeric, also don't use special characters which will be encoded by the browser):
+
+```yaml
+# app/config/monitoring.yml
+monitoring:
+    api_code: 'putSomethingUniqueHere' 
+```
+
+Include routing
 ```json
+# app/config/routing.yml
 _monitoring:
     resource: "@MonitoringBundle/Resources/config/routing.yml"
 ```
 
 Enable the service/extension in pimcore-backend.
 
-Immediately create the configuration for this service containing the authentication key (must be alphanumeric, also don't use special characters which will be encoded by the browser):
-
-```yaml
-monitoring:
-    api_code: 'putSomethingUniqueHere' 
-```
-
 ## Fetch Data
 ```php
 POST /monitoring/fetch
 
-Content-Disposition: form-data; name="apiCode"
-
-putSomethingUniqueHere
+with body-parameter apiCode=putSomethingUniqueHere
 ```
 
 ## Output
 - Pimcore version
 - Information about extensions
-- Information about AreaBricks
+- Information about areabricks
 
 ```json
-
 {
     "core": {
         "version": "5.3.0",
@@ -76,7 +76,6 @@ putSomethingUniqueHere
         },
     ...
 }
-
 ```
 ## Copyright and license
 Copyright: [DACHCOM.DIGITAL](http://dachcom-digital.ch)  
