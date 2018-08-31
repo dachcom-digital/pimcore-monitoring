@@ -15,6 +15,8 @@ class MonitoringBundle extends AbstractPimcoreBundle
 {
     use PackageVersionTrait;
 
+    const PACKAGE_NAME = 'dachcom-digital/monitoring';
+
     /**
      * @param ContainerBuilder $container
      */
@@ -28,7 +30,6 @@ class MonitoringBundle extends AbstractPimcoreBundle
      */
     protected function getComposerPackageName(): string
     {
-        return 'dachcom-digital/monitoring';
+        return self::PACKAGE_NAME;
     }
-
 }
