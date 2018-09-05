@@ -58,9 +58,10 @@ class WatchDogController extends FrontendController
         }
 
         return new JsonResponse([
-            'core'       => $this->watchDog->getCoreInfo(),
-            'extensions' => $this->watchDog->getExtensionsInfo(),
-            'bricks'     => $this->watchDog->getBricksInfo()
+            'core'           => $this->watchDog->getCoreInfo(),
+            'extensions'     => $this->watchDog->getExtensionsInfo(),
+            'bricks'         => $this->watchDog->getBricksInfo(),
+            'security_check' => $this->watchDog->getSecurityCheck()
         ], 200);
     }
 
