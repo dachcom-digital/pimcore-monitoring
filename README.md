@@ -78,6 +78,18 @@ with body-parameter apiCode=putSomethingUniqueHere
             "name": "Anchor",
             "isEnabled": true
         }
+    },
+    "security_check": {
+        "symfony/symfony": {
+            "version": "v3.4.12",
+            "advisories": {
+                "symfony/symfony/CVE-2018-14773.yaml": {
+                    "title": "CVE-2018-14773: Remove support for legacy and risky HTTP headers",
+                    "link": "https://symfony.com/blog/cve-2018-14773-remove-support-for-legacy-and-risky-http-headers",
+                    "cve": "CVE-2018-14773"
+                }
+            }
+        }
     }
 }
 ```
