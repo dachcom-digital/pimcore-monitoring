@@ -29,6 +29,7 @@
         }
     },
     "require": {
-        "pimcore/core-version": "^5.0.0"
+        "pimcore/core-version": "^5.0.0",
+        "sensiolabs/security-checker": "~3.0|~4.0"
     }
 }

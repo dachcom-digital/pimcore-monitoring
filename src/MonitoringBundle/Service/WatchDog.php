@@ -4,7 +4,9 @@ namespace MonitoringBundle\Service;
 
 use Pimcore\Extension\Bundle\PimcoreBundleManager;
 use Pimcore\Extension\Document\Areabrick\AreabrickManager;
+use Pimcore\Kernel;
 use Pimcore\Version;
+use SensioLabs\Security\SecurityChecker;
 
 /**
  * Class WatchDog
@@ -21,6 +23,14 @@ class WatchDog
      * @var AreabrickManager
      */
     protected $areabrickManager;
+    /**
+     * @var SecurityChecker
+     */
+    protected $securityChecker;
+    /**
+     * @var SymfonyKernel
+     */
+    protected $kernel;
 
     /**
      * WatchDog constructor.
@@ -30,10 +40,14 @@ class WatchDog
      */
     public function __construct(
         PimcoreBundleManager $pimcoreBundleManager,
-        AreabrickManager $areabrickManager
+        AreabrickManager $areabrickManager,
+        SecurityChecker $securityChecker,
+        Kernel $kernel
     ) {
         $this->pimcoreBundleManager = $pimcoreBundleManager;
         $this->areabrickManager = $areabrickManager;
+        $this->securityChecker = $securityChecker;
+        $this->kernel = $kernel;
     }
 
     /**
@@ -87,5 +101,13 @@ class WatchDog
         }
 
         return $extensions;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSecurityCheck()
+    {
+        return $this->securityChecker->check($this->kernel->getProjectDir());
     }
 }
