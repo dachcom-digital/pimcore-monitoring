@@ -19,16 +19,19 @@ class WatchDog
      * @var PimcoreBundleManager
      */
     protected $pimcoreBundleManager;
+
     /**
      * @var AreabrickManager
      */
     protected $areabrickManager;
+
     /**
      * @var SecurityChecker
      */
     protected $securityChecker;
+
     /**
-     * @var SymfonyKernel
+     * @var Kernel
      */
     protected $kernel;
 
@@ -37,6 +40,8 @@ class WatchDog
      *
      * @param PimcoreBundleManager $pimcoreBundleManager
      * @param AreabrickManager     $areabrickManager
+     * @param SecurityChecker      $securityChecker
+     * @param Kernel               $kernel
      */
     public function __construct(
         PimcoreBundleManager $pimcoreBundleManager,
