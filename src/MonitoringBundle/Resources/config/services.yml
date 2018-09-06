@@ -18,8 +18,6 @@ services:
     MonitoringBundle\Service\WatchDog:
         autowire: true
         autoconfigure: true
-        arguments:
-            $securityChecker: '@sensio_distribution.security_checker'
 
     Pimcore\ExtensionManager:
         autowire: true

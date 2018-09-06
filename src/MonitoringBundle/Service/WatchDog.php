@@ -26,11 +26,6 @@ class WatchDog
     protected $areabrickManager;
 
     /**
-     * @var SecurityChecker
-     */
-    protected $securityChecker;
-
-    /**
      * @var Kernel
      */
     protected $kernel;
@@ -40,18 +35,15 @@ class WatchDog
      *
      * @param PimcoreBundleManager $pimcoreBundleManager
      * @param AreabrickManager     $areabrickManager
-     * @param SecurityChecker      $securityChecker
      * @param Kernel               $kernel
      */
     public function __construct(
         PimcoreBundleManager $pimcoreBundleManager,
         AreabrickManager $areabrickManager,
-        SecurityChecker $securityChecker,
         Kernel $kernel
     ) {
         $this->pimcoreBundleManager = $pimcoreBundleManager;
         $this->areabrickManager = $areabrickManager;
-        $this->securityChecker = $securityChecker;
         $this->kernel = $kernel;
     }
 
@@ -113,6 +105,7 @@ class WatchDog
      */
     public function getSecurityCheck()
     {
-        return $this->securityChecker->check($this->kernel->getProjectDir());
+        $checker = new SecurityChecker();
+        return $checker->check($this->kernel->getProjectDir());
     }
 }
