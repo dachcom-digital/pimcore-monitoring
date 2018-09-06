@@ -106,6 +106,13 @@ class WatchDog
     public function getSecurityCheck()
     {
         $checker = new SecurityChecker();
-        return $checker->check($this->kernel->getProjectDir());
+        $data = [];
+        try {
+            $data = $checker->check($this->kernel->getProjectDir());
+        } catch (\Exception $e) {
+            // fail silently
+        }
+
+        return $data;
     }
 }

@@ -3,6 +3,9 @@
 ***
 After every update you should check the pimcore extension manager. Just click the "update" button to finish the bundle update.
 
+#### Update from version 2.0.1 to version 2.0.2
+- fixed securechecker related stuff: if no composer.lock provided ([see readme](README.md)), securechecker returns []
+
 #### Update from version 2.0.0 to version 2.0.1
 - implemented Issue #1: Implement security:check
 - requires Pimcore 5.1

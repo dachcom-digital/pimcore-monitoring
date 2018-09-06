@@ -43,9 +43,10 @@ with body-parameter apiCode=putSomethingUniqueHere
 ```
 
 ## Output
-- Pimcore version
+- Pimcore version and revision
 - Information about extensions
 - Information about areabricks
+- Securechecker output - this requires composer.lock in getProjectDir() (see [Pimcore\Kernel](https://pimcore.com/docs/api/master/Pimcore/Kernel.html)); defaults to []
 
 ```json
 {
