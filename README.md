@@ -94,6 +94,33 @@ with body-parameter apiCode=putSomethingUniqueHere
     }
 }
 ```
+## Check-Script
+In the folder "check-script" you find a perl-script which you can use to check your instance of pimcore. We built it to be used in NAGIOS.
+This script is "as is" - extend/change it for your own needs
+
+```
+perl pimcore-checker.pl --server=<server> [--level, --verbose, --help]
+
+Parameters:
+    --server        Protocol and domain of installation to check (e.g. https://solution.dachcom.com/)
+optional:
+    --level         minimum errorlevel to return, default is 1 (0: show all; 1: show critical and warning; 2: show critical only)
+    --verbose, -v   additionally output gathered package-informations as json
+    --help, -h      print this help
+```
+
+The script uses the configurationfile "config/versions.json" - the committed one is an example and needs to be configured by you.
+
+The example "ToolboxBundle" can be duplicated for every bundle you use.
+
+Substituted operands are:
+<, >, ==, !=
+
+where '==' is the default if not defined
+
+Versions are compared using perl's string-comparison (see $SUBSTITUTED_OPERANDS in pimcore-checker.pl).
+
+
 ## Copyright and license
 Copyright: [DACHCOM.DIGITAL](http://dachcom-digital.ch)  
 For licensing details please visit [LICENSE.md](LICENSE.md)  

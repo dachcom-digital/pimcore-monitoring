@@ -1,0 +1,35 @@
+{
+    "ApiCode": "XoXPCMDwTj2UygzejP2eV43qhUNgdckudmPGbgphNTZXMQ",
+    "core": {
+        "OK": [
+            ">5.5.0",
+            "5.4.4"
+        ],
+        "WARNING": [
+            "<5.5.0"
+        ],
+        "CRITICAL": [
+            "<4.0.0"
+        ]
+    },
+    "extensions": {
+        "GENERAL": {
+            "CRITICAL": [
+                "dev-master",
+                "dev",
+                "alpha"
+            ]
+        },
+        "ToolboxBundle\\ToolboxBundle": {
+            "OK": [
+                "2.6.1"
+            ],
+            "WARNING": [
+                "<2.6.1"
+            ],
+            "CRITICAL": [
+                "dev"
+            ]
+        }
+    }
+}
