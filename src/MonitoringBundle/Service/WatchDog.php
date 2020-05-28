@@ -5,14 +5,10 @@ namespace MonitoringBundle\Service;
 use Pimcore\Extension\Bundle\PimcoreBundleManager;
 use Pimcore\Extension\Document\Areabrick\AreabrickManager;
 use Pimcore\Kernel;
+use Pimcore\Model\User;
 use Pimcore\Version;
 use SensioLabs\Security\SecurityChecker;
 
-/**
- * Class WatchDog
- *
- * @package MonitoringBundle\Service
- */
 class WatchDog
 {
     /**
@@ -77,6 +73,71 @@ class WatchDog
             ];
         }
         return $bricks;
+    }
+
+    /**
+     * @return array
+     */
+    public function getUsersInfo()
+    {
+        $userListing = new User\Listing();
+
+        $users = [];
+        foreach ($userListing->getUsers() as $user) {
+            $users[] = [
+                'name'       => $user->getName(),
+                'active'     => $user->isActive(),
+                'is_admin'   => $user->isAdmin(),
+                'last_login' => $user->getLastLogin(),
+            ];
+        }
+
+        return $users;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFailedLoginsInfo()
+    {
+        $maxEntries = 50;
+        $logFile = PIMCORE_LOG_DIRECTORY . '/loginerror.log';
+
+        if (!file_exists($logFile)) {
+            return [];
+        }
+
+        $logData = file_get_contents($logFile);
+
+        $lines = explode("\n", $logData);
+        $entries = [];
+
+        if (is_array($lines) && count($lines) > 0) {
+
+            // latest first!
+            $lines = array_reverse($lines);
+
+            foreach ($lines as $c => $line) {
+
+                if (empty($line)) {
+                    continue;
+                }
+
+                $data = explode(',', $line);
+
+                $entries[] = [
+                    'date'     => isset($data[0]) ? $data[0] : null,
+                    'ip'       => isset($data[1]) ? $data[1] : null,
+                    'username' => isset($data[2]) ? $data[2] : null,
+                ];
+
+                if ($c + 1 >= $maxEntries) {
+                    break;
+                }
+            }
+        }
+
+        return $entries;
     }
 
     /**

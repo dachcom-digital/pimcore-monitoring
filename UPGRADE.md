@@ -3,6 +3,11 @@
 ***
 After every update you should check the pimcore extension manager. Just click the "update" button to finish the bundle update.
 
+#### Update from version 2.x to version 2.1.1
+- fetch users
+- fetch login errors
+- fix security check
+
 #### Update from version 2.0.2 to version 2.0.3
 - added script (perl) for checking instance - useful for integration with NAGIOS etc. You need to set the acceptable packages yourself in the versions.json
 - checked compatibility with sensiolabs/security-checker ~5.0

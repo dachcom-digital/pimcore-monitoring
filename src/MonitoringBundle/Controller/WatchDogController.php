@@ -13,13 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
- * Class Monitoring_WatchDogController
  * @Route("/monitoring")
  * @Template()
  */
 class WatchDogController extends FrontendController
 {
-
     /**
      * @var Configuration
      */
@@ -31,8 +29,6 @@ class WatchDogController extends FrontendController
     protected $watchDog;
 
     /**
-     * WatchDogController constructor.
-     *
      * @param Configuration $configuration
      * @param WatchDog      $watchDog
      */
@@ -61,7 +57,9 @@ class WatchDogController extends FrontendController
             'core'           => $this->watchDog->getCoreInfo(),
             'extensions'     => $this->watchDog->getExtensionsInfo(),
             'bricks'         => $this->watchDog->getBricksInfo(),
-            'security_check' => $this->watchDog->getSecurityCheck()
+            'security_check' => $this->watchDog->getSecurityCheck(),
+            'users'          => $this->watchDog->getUsersInfo(),
+            'failed_logins'  => $this->watchDog->getFailedLoginsInfo()
         ], 200);
     }
 
