@@ -31,8 +31,6 @@ class WatchDog
     protected $kernel;
 
     /**
-     * WatchDog constructor.
-     *
      * @param PimcoreBundleManager $pimcoreBundleManager
      * @param AreabrickManager     $areabrickManager
      * @param Kernel               $kernel
@@ -106,13 +104,18 @@ class WatchDog
     public function getSecurityCheck()
     {
         $checker = new SecurityChecker();
-        $data = [];
+
         try {
             $data = $checker->check($this->kernel->getProjectDir());
         } catch (\Exception $e) {
             // fail silently
+            return [];
         }
 
-        return $data;
+        if ($data->count() > 0) {
+            return json_decode((string) $data, true);
+        }
+
+        return [];
     }
 }
