@@ -84,6 +84,11 @@ class WatchDog
 
         $users = [];
         foreach ($userListing->getUsers() as $user) {
+
+            if (!$user instanceof User) {
+                continue;
+            }
+
             $users[] = [
                 'name'       => $user->getName(),
                 'active'     => $user->isActive(),
