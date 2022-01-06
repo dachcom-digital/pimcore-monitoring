@@ -62,7 +62,7 @@ my $SUBSTITUTED_OPERANDS = {
 # load config
 my $config = decode_json(_slurp_file('config/versions.json'));
 
-my $API_CODE = $config->{ApiCode} || 'XoXPCMDwTj2UygzejP2eV43qhUNgdckudmPGbgphNTZXMQ'; # this code is the same as you configure for the monitoring-bundle
+my $API_CODE = $config->{ApiCode} || 'YOUR_API_CODE'; # this code is the same as you configure for the monitoring-bundle
 my $URL_APPENDIX = "/monitoring/fetch";
 
 (my $url = $appserver . $URL_APPENDIX) =~ s{(\w)//}{$1/}g;
@@ -94,20 +94,6 @@ if (my $configCore = $config->{extensions} and my $appServerDataCore = $appServe
                 || @$ERROR_LEVELS[-1];
         $checks->{extensions}->{$appExtension->{identifier}} = $comparisonResult;
         $checks->{byLevel}->{$comparisonResult}->{extension}->{$appExtension->{identifier}} = $appCoreVersion;
-    }
-}
-
-# add security_check infos
-if (my $checkdata = $appServerData->{security_check}) {
-    if (ref $checkdata eq "HASH") {
-        foreach my $packagename (keys %{$checkdata}) {
-            $checks->{byLevel}->{CRITICAL}->{PHP}->{$packagename} = 1;
-        }
-    }
-    elsif (ref $checkdata eq "ARRAY") {
-        foreach my $packagename (@{$checkdata}) {
-            $checks->{byLevel}->{CRITICAL}->{PHP}->{$packagename} = 1;
-        }
     }
 }
 

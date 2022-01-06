@@ -2,7 +2,7 @@
     "name": "dachcom-digital/monitoring",
     "type": "pimcore-bundle",
     "license": "GPL-3.0-or-later",
-    "description": "Pimcore 5.x Monitoring - get monitoring information",
+    "description": "Pimcore Monitoring - get monitoring information",
     "keywords": [
         "pimcore",
         "monitoring"
@@ -10,8 +10,8 @@
     "homepage": "https://github.com/dachcom-digital/pimcore-monitoring",
     "authors": [
         {
-            "name": "DACHCOM.DIGITAL Manuel Hartung",
-            "email": "mhartung@dachcom.ch",
+            "name": "DACHCOM.DIGITAL Stefan Hagspiel",
+            "email": "shagspiel@dachcom.ch",
             "homepage": "http://www.dachcom.com/",
             "role": "Developer"
         }
@@ -29,7 +29,6 @@
         }
     },
     "require": {
-        "pimcore/core-version": "^5.1",
-        "sensiolabs/security-checker": "~3.0|~4.0|~5.0"
+        "pimcore/pimcore": "^10.1"
     }
 }

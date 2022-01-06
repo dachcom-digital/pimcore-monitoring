@@ -5,24 +5,17 @@ namespace MonitoringBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-/**
- * Class Configuration
- *
- * @package MonitoringBundle\DependencyInjection
- */
 class Configuration implements ConfigurationInterface
 {
-    /**
-     * @return TreeBuilder
-     */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('monitoring');
+        $treeBuilder = new TreeBuilder('monitoring');
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
+            ->addDefaultsIfNotSet()
             ->children()
-                ->scalarNode('api_code')->isRequired()->end()
+                ->scalarNode('api_code')->defaultNull()->end()
             ->end();
 
         return $treeBuilder;

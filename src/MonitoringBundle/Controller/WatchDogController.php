@@ -5,33 +5,15 @@ namespace MonitoringBundle\Controller;
 use MonitoringBundle\Configuration\Configuration;
 use MonitoringBundle\Service\WatchDog;
 use Pimcore\Controller\FrontendController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
-/**
- * @Route("/monitoring")
- * @Template()
- */
 class WatchDogController extends FrontendController
 {
-    /**
-     * @var Configuration
-     */
-    protected $configuration;
+    protected Configuration $configuration;
+    protected WatchDog $watchDog;
 
-    /**
-     * @var WatchDog
-     */
-    protected $watchDog;
-
-    /**
-     * @param Configuration $configuration
-     * @param WatchDog      $watchDog
-     */
     public function __construct(Configuration $configuration, WatchDog $watchDog)
     {
         $this->configuration = $configuration;
@@ -39,15 +21,9 @@ class WatchDogController extends FrontendController
     }
 
     /**
-     * @param Request $request
-     *
-     * @return JsonResponse
-     *
      * @throws AccessDeniedHttpException
-     *
-     * @Route("/fetch")
      */
-    public function fetchAction(Request $request)
+    public function fetchAction(Request $request): JsonResponse
     {
         if (!$this->checkAuth($request)) {
             throw new AccessDeniedHttpException();
@@ -57,20 +33,15 @@ class WatchDogController extends FrontendController
             'core'           => $this->watchDog->getCoreInfo(),
             'extensions'     => $this->watchDog->getExtensionsInfo(),
             'bricks'         => $this->watchDog->getBricksInfo(),
-            'security_check' => $this->watchDog->getSecurityCheck(),
             'users'          => $this->watchDog->getUsersInfo(),
             'failed_logins'  => $this->watchDog->getFailedLoginsInfo()
         ], 200);
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return true|Response
-     */
-    private function checkAuth(Request $request)
+    protected function checkAuth(Request $request): bool
     {
-        $userSecret = $request->get('apiCode');
-        return (isset($userSecret) && $userSecret === $this->configuration->getApiCode());
+        $userSecret = $request->request->get('apiCode', '');
+
+        return $userSecret === $this->configuration->getApiCode();
     }
 }
