@@ -1,12 +1,5 @@
 services:
 
-    # Example event listener for objects
-    # AppBundle\EventListener\TestListener:
-    #    class: AppBundle\EventListener\TestListener
-    #    tags:
-    #        - { name: kernel.event_listener, event: pimcore.object.preUpdate, method: onObjectPreUpdate }
-
-    # configuration
     MonitoringBundle\Configuration\Configuration:
         autowire: true
         autoconfigure: true
@@ -14,12 +7,8 @@ services:
     MonitoringBundle\Controller\WatchDogController:
         autowire: true
         autoconfigure: true
+        tags: [ 'controller.service_arguments' ]
 
     MonitoringBundle\Service\WatchDog:
         autowire: true
         autoconfigure: true
-
-    Pimcore\ExtensionManager:
-        autowire: true
-        autoconfigure: true
-

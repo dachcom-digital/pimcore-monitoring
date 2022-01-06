@@ -7,44 +7,24 @@ use Pimcore\Extension\Document\Areabrick\AreabrickManager;
 use Pimcore\Kernel;
 use Pimcore\Model\User;
 use Pimcore\Version;
-use SensioLabs\Security\SecurityChecker;
 
 class WatchDog
 {
-    /**
-     * @var PimcoreBundleManager
-     */
-    protected $pimcoreBundleManager;
+    protected PimcoreBundleManager $pimcoreBundleManager;
+    protected AreabrickManager $areaBrickManager;
+    protected Kernel $kernel;
 
-    /**
-     * @var AreabrickManager
-     */
-    protected $areabrickManager;
-
-    /**
-     * @var Kernel
-     */
-    protected $kernel;
-
-    /**
-     * @param PimcoreBundleManager $pimcoreBundleManager
-     * @param AreabrickManager     $areabrickManager
-     * @param Kernel               $kernel
-     */
     public function __construct(
         PimcoreBundleManager $pimcoreBundleManager,
-        AreabrickManager $areabrickManager,
+        AreabrickManager $areaBrickManager,
         Kernel $kernel
     ) {
         $this->pimcoreBundleManager = $pimcoreBundleManager;
-        $this->areabrickManager = $areabrickManager;
+        $this->areaBrickManager = $areaBrickManager;
         $this->kernel = $kernel;
     }
 
-    /**
-     * @return array
-     */
-    public function getCoreInfo()
+    public function getCoreInfo(): array
     {
         return [
             'version'  => Version::getVersion(),
@@ -52,14 +32,11 @@ class WatchDog
         ];
     }
 
-    /**
-     * @return array
-     */
-    public function getBricksInfo()
+    public function getBricksInfo(): array
     {
         $bricks = [];
-        foreach ($this->areabrickManager->getBricks() as $brickName => $brickInfo) {
-            $brick = $this->areabrickManager->getBrick($brickName);
+        foreach ($this->areaBrickManager->getBricks() as $brickName => $brickInfo) {
+            $brick = $this->areaBrickManager->getBrick($brickName);
 
             $desc = $brick->getDescription();
             if (empty($desc) && $newDesc = $brick->getId()) {
@@ -69,16 +46,13 @@ class WatchDog
             $bricks[$brickName] = [
                 'description' => $desc,
                 'name'        => $brick->getName(),
-                'isEnabled'   => $this->areabrickManager->isEnabled($brickName),
+                'isEnabled'   => $this->areaBrickManager->isEnabled($brickName),
             ];
         }
         return $bricks;
     }
 
-    /**
-     * @return array
-     */
-    public function getUsersInfo()
+    public function getUsersInfo(): array
     {
         $userListing = new User\Listing();
 
@@ -100,10 +74,7 @@ class WatchDog
         return $users;
     }
 
-    /**
-     * @return array
-     */
-    public function getFailedLoginsInfo()
+    public function getFailedLoginsInfo(): array
     {
         $maxEntries = 50;
         $logFile = PIMCORE_LOG_DIRECTORY . '/loginerror.log';
@@ -131,9 +102,9 @@ class WatchDog
                 $data = explode(',', $line);
 
                 $entries[] = [
-                    'date'     => isset($data[0]) ? $data[0] : null,
-                    'ip'       => isset($data[1]) ? $data[1] : null,
-                    'username' => isset($data[2]) ? $data[2] : null,
+                    'date'     => $data[0] ?? null,
+                    'ip'       => $data[1] ?? null,
+                    'username' => $data[2] ?? null,
                 ];
 
                 if ($c + 1 >= $maxEntries) {
@@ -145,43 +116,19 @@ class WatchDog
         return $entries;
     }
 
-    /**
-     * @return array
-     */
-    public function getExtensionsInfo()
+    public function getExtensionsInfo(): array
     {
         $extensions = [];
 
         foreach ($this->pimcoreBundleManager->getActiveBundles() as $bundle) {
-            array_push($extensions, [
+            $extensions[] = [
                 'title'      => $bundle->getNiceName(),
                 'version'    => $bundle->getVersion(),
                 'identifier' => $this->pimcoreBundleManager->getBundleIdentifier($bundle),
                 'isEnabled'  => $this->pimcoreBundleManager->isEnabled($bundle),
-            ]);
+            ];
         }
 
         return $extensions;
-    }
-
-    /**
-     * @return array
-     */
-    public function getSecurityCheck()
-    {
-        $checker = new SecurityChecker();
-
-        try {
-            $data = $checker->check($this->kernel->getProjectDir());
-        } catch (\Exception $e) {
-            // fail silently
-            return [];
-        }
-
-        if ($data->count() > 0) {
-            return json_decode((string) $data, true);
-        }
-
-        return [];
     }
 }

@@ -1,103 +1,51 @@
 # Pimcore Monitoring
+Fetch health state of your pimcore installation.
 
-#### Requirements
-* Pimcore 5/6
+### Release Plan
+| Release | Supported Pimcore Versions        | Supported Symfony Versions | Release Date | Maintained     | Branch     |
+|---------|-----------------------------------|----------------------------|--------------|----------------|------------|
+| **3.x** | `^10.0`                           | `5.4`                      | --           | Feature Branch | master     |
+| **2.x** | `^5.0`, `^6.0`                    | `3.4`, `^4.4`              | 31.08.2018   | Unsupported    | [1.x](https://github.com/dachcom-digital/pimcore-monitoring/tree/2.x) |
+| **1.x** | `^4.0`                            | --                         | 06.02.2017   | Unsupported    | [pimcore4](https://github.com/dachcom-digital/pimcore-monitoring/tree/pimcore4) |
 
 ## Installation
-:information_source: Please pay attention to the [upgrade notes](./UPGRADE.md).
-
-Create the configuration for this service containing the authentication code (must be alphanumeric, also don't use special characters which will be encoded by the browser):
-
-```yaml
-# app/config/monitoring.yml
-monitoring:
-    api_code: 'putSomethingUniqueHere'
-```
-
-Add it to your project-config:
-```yaml
-# app/config/config.yml
-imports:
-    - { resource: monitoring.yml }
-```
-
-Use composer to require dachcom-digital/monitoring or add it manually:
-```json
-{
-    "require": {
-        "dachcom-digital/monitoring" : "~2.1.0"
-    }
-}  
-```
-
-Include routing:
-```yaml
-# app/config/routing.yml
-monitoring:
-    resource: "@MonitoringBundle/Resources/config/routing.yml"
-```
-
-Enable the service/extension in pimcore-backend.
-
-## Fetch Data
-```php
-POST /monitoring/fetch
-
-with body-parameter apiCode=putSomethingUniqueHere
-```
-
-## Output
-- Pimcore version and revision
-- Information about extensions
-- Information about areabricks
-- Securechecker output - this requires composer.lock in getProjectDir() (see [Pimcore\Kernel](https://pimcore.com/docs/api/master/Pimcore/Kernel.html)); defaults to []
 
 ```json
-{
-    "core": {
-        "version": "5.3.0",
-        "revision": 290
-    },
-    "extensions": [
-        {
-        "title": "I18nBundle",
-        "version": "2.3.2",
-        "identifier": "I18nBundle\\I18nBundle",
-        "isEnabled": true
-        },
-        {
-        "title": "ToolboxBundle",
-        "version": "2.6.1",
-        "identifier": "ToolboxBundle\\ToolboxBundle",
-        "isEnabled": true
-        }
-    ],
-    "bricks": {
-        "accordion": {
-            "description": "Toolbox Accordion / Tabs",
-            "name": "Accordion",
-            "isEnabled": true
-        },
-        "anchor": {
-            "description": "Toolbox Anchor",
-            "name": "Anchor",
-            "isEnabled": true
-        }
-    },
-    "security_check": {
-        "symfony/symfony": {
-            "version": "v3.4.12",
-            "advisories": {
-                "symfony/symfony/CVE-2018-14773.yaml": {
-                    "title": "CVE-2018-14773: Remove support for legacy and risky HTTP headers",
-                    "link": "https://symfony.com/blog/cve-2018-14773-remove-support-for-legacy-and-risky-http-headers",
-                    "cve": "CVE-2018-14773"
-                }
-            }
-        }
-    }
+"require" : {
+    "dachcom-digital/monitoring" : "~3.0.0"
 }
 ```
+
+- Execute: `$ bin/console pimcore:bundle:enable MonitoringBundle`
+
+### Install Routes
+```yaml
+# config/routes.yaml
+monitoring:
+    resource: '@MonitoringBundle/Resources/config/routing.yml'
+```
+
+### Configuration
+
+```yaml
+# config/monitoring.yml
+monitoring:
+    api_code: 'YOUR_API_CODE'
+```
+
+
+## Fetch Data
+```bash
+curl --data "apiCode=YOUR_API_CODE" https://www.your-domain.tld/monitoring/fetch
+```
+
+## Available Output
+- Pimcore version and revision
+- Installed Bundles
+- Installed AreaBricks
+- Available Users
+- Failed logins
+
 ## Check-Script
 In the folder "check-script" you find a perl-script which you can use to check your instance of pimcore. We built it to be used in NAGIOS.
 This script is "as is" - extend/change it for your own needs
@@ -113,7 +61,7 @@ optional:
     --help, -h      print this help
 ```
 
-The script uses the configurationfile "config/versions.json" - the committed one is an example and needs to be configured by you.
+The script uses the configuration file "config/versions.json" - the committed one is an example and needs to be configured by you.
 
 The example "ToolboxBundle" can be duplicated for every bundle you use.
 
@@ -124,7 +72,9 @@ where '==' is the default if not defined
 
 Versions are compared using perl's string-comparison (see $SUBSTITUTED_OPERANDS in pimcore-checker.pl).
 
-
 ## Copyright and license
 Copyright: [DACHCOM.DIGITAL](http://dachcom-digital.ch)  
 For licensing details please visit [LICENSE.md](LICENSE.md)  
+
+## Upgrade Info
+Before updating, please [check our upgrade notes!](UPGRADE.md)

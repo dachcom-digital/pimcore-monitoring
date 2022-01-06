@@ -1,4 +1,3 @@
-_pimcore_monitoring:
-    resource: "@MonitoringBundle/Controller/"
-    type:     annotation
-    methods: [POST]
+monitoring.fetch:
+    path: /monitoring/fetch
+    defaults: { _controller: MonitoringBundle\Controller\WatchDogController::fetchAction }
