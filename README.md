@@ -2,11 +2,11 @@
 Fetch health state of your pimcore installation.
 
 ### Release Plan
-| Release | Supported Pimcore Versions        | Supported Symfony Versions | Release Date | Maintained     | Branch     |
-|---------|-----------------------------------|----------------------------|--------------|----------------|------------|
-| **3.x** | `^10.0`                           | `5.4`                      | 06.01.2022   | Feature Branch | master     |
-| **2.x** | `^5.0`, `^6.0`                    | `3.4`, `^4.4`              | 31.08.2018   | Unsupported    | [1.x](https://github.com/dachcom-digital/pimcore-monitoring/tree/2.x) |
-| **1.x** | `^4.0`                            | --                         | 06.02.2017   | Unsupported    | [pimcore4](https://github.com/dachcom-digital/pimcore-monitoring/tree/pimcore4) |
+| Release | Supported Pimcore Versions | Supported Symfony Versions | Release Date | Maintained     | Branch                                                                          |
+|---------|----------------------------|----------------------------|--------------|----------------|---------------------------------------------------------------------------------|
+| **3.x** | `^10.0`                    | `5.4`                      | 06.01.2022   | Feature Branch | master                                                                          |
+| **2.x** | `^5.0`, `^6.0`             | `3.4`, `^4.4`              | 31.08.2018   | Unsupported    | [1.x](https://github.com/dachcom-digital/pimcore-monitoring/tree/2.x)           |
+| **1.x** | `^4.0`                     | --                         | 06.02.2017   | Unsupported    | [pimcore4](https://github.com/dachcom-digital/pimcore-monitoring/tree/pimcore4) |
 
 ## Installation
 
