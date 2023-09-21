@@ -24,7 +24,6 @@ return [
 ];
 ```
 
-
 ### Install Routes
 ```yaml
 # config/routes.yaml
@@ -35,7 +34,7 @@ monitoring:
 ### Configuration
 
 ```yaml
-# config/monitoring.yml
+# config/packages/monitoring.yaml
 monitoring:
     api_code: 'YOUR_API_CODE'
 ```
