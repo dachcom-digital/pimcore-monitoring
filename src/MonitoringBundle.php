@@ -4,7 +4,6 @@ namespace MonitoringBundle;
 
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
 use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class MonitoringBundle extends AbstractPimcoreBundle
 {
@@ -12,9 +11,9 @@ class MonitoringBundle extends AbstractPimcoreBundle
 
     public const PACKAGE_NAME = 'dachcom-digital/monitoring';
 
-    public function build(ContainerBuilder $container): void
+    public function getPath(): string
     {
-        parent::build($container);
+        return \dirname(__DIR__);
     }
 
     protected function getComposerPackageName(): string

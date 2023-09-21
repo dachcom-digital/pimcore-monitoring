@@ -10,18 +10,11 @@ use Pimcore\Version;
 
 class WatchDog
 {
-    protected PimcoreBundleManager $pimcoreBundleManager;
-    protected AreabrickManager $areaBrickManager;
-    protected Kernel $kernel;
-
     public function __construct(
-        PimcoreBundleManager $pimcoreBundleManager,
-        AreabrickManager $areaBrickManager,
-        Kernel $kernel
+        protected PimcoreBundleManager $pimcoreBundleManager,
+        protected AreabrickManager $areaBrickManager,
+        protected Kernel $kernel
     ) {
-        $this->pimcoreBundleManager = $pimcoreBundleManager;
-        $this->areaBrickManager = $areaBrickManager;
-        $this->kernel = $kernel;
     }
 
     public function getCoreInfo(): array
@@ -46,7 +39,7 @@ class WatchDog
             $bricks[$brickName] = [
                 'description' => $desc,
                 'name'        => $brick->getName(),
-                'isEnabled'   => $this->areaBrickManager->isEnabled($brickName),
+                'isEnabled'   => true,
             ];
         }
         return $bricks;
@@ -63,11 +56,19 @@ class WatchDog
                 continue;
             }
 
+            $lastLogin = 0;
+
+            try {
+                $lastLogin = $user->getLastLogin();
+            } catch (\Throwable) {
+                // fail silently: "User::$lastLogin must not be accessed before initialization"
+            }
+
             $users[] = [
                 'name'       => $user->getName(),
                 'active'     => $user->isActive(),
                 'is_admin'   => $user->isAdmin(),
-                'last_login' => $user->getLastLogin(),
+                'last_login' => $lastLogin,
             ];
         }
 
@@ -122,10 +123,10 @@ class WatchDog
 
         foreach ($this->pimcoreBundleManager->getActiveBundles() as $bundle) {
             $extensions[] = [
-                'title'      => $bundle->getNiceName(),
-                'version'    => $bundle->getVersion(),
-                'identifier' => $this->pimcoreBundleManager->getBundleIdentifier($bundle),
-                'isEnabled'  => $this->pimcoreBundleManager->isEnabled($bundle),
+                'title'       => $bundle->getNiceName(),
+                'version'     => $bundle->getVersion(),
+                'identifier'  => $this->pimcoreBundleManager->getBundleIdentifier($bundle),
+                'isInstalled' => $this->pimcoreBundleManager->isInstalled($bundle),
             ];
         }
 

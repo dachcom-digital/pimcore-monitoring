@@ -11,13 +11,8 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class WatchDogController extends FrontendController
 {
-    protected Configuration $configuration;
-    protected WatchDog $watchDog;
-
-    public function __construct(Configuration $configuration, WatchDog $watchDog)
+    public function __construct(protected Configuration $configuration, protected WatchDog $watchDog)
     {
-        $this->configuration = $configuration;
-        $this->watchDog = $watchDog;
     }
 
     /**

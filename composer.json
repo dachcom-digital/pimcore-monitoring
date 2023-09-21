@@ -18,7 +18,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "MonitoringBundle\\": "src/MonitoringBundle"
+            "MonitoringBundle\\": "src/"
         }
     },
     "extra": {
@@ -29,6 +29,6 @@
         }
     },
     "require": {
-        "pimcore/pimcore": "^10.1"
+        "pimcore/pimcore": "^11.0"
     }
 }
