@@ -9,6 +9,10 @@
 ### Deprecations
 - `extensions.isEnabled` has been removed and was replaced by `extensions.isInstalled`
 - Check Script has been removed
+- `failed_logins` has been removed since pimcore now longer provide any logging files for that. If you still need it, you need to implement your own check and hook into the security monolog channel for example
+
+### New Features
+- It's now possible to add your own check. Just create a tagged `pimcore.monitoring.check` service and implement the `CheckInterface` interface
 
 ***
 

@@ -39,18 +39,19 @@ monitoring:
     api_code: 'YOUR_API_CODE'
 ```
 
-
 ## Fetch Data
 ```bash
 curl --data "apiCode=YOUR_API_CODE" https://www.your-domain.tld/monitoring/fetch
 ```
+
+## Create Custom Check
+Create a tagged `pimcore.monitoring.check` service and implement the `CheckInterface` interface.
 
 ## Available Checks
 - Pimcore version and revision
 - Installed Bundles
 - Installed AreaBricks
 - Available Users
-- Failed logins
 
 ## Copyright and license
 Copyright: [DACHCOM.DIGITAL](http://dachcom-digital.ch)  
