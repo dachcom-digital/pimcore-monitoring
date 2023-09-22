@@ -4,11 +4,20 @@ services:
         autowire: true
         autoconfigure: true
 
-    MonitoringBundle\Controller\WatchDogController:
+    MonitoringBundle\Controller\CheckController:
         autowire: true
         autoconfigure: true
         tags: [ 'controller.service_arguments' ]
 
-    MonitoringBundle\Service\WatchDog:
+    MonitoringBundle\Check\Check:
         autowire: true
         autoconfigure: true
+        arguments:
+            $checks: !tagged_iterator pimcore.monitoring.check
+
+    MonitoringBundle\Check\:
+        autowire: true
+        autoconfigure: true
+        resource: '../src/Check/'
+        exclude: ['../src/Check/Check.php']
+        tags: [ 'pimcore.monitoring.check' ]
