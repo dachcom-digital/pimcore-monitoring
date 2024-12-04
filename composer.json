@@ -1,7 +1,10 @@
 {
     "name": "dachcom-digital/monitoring",
     "type": "pimcore-bundle",
-    "license": "GPL-3.0-or-later",
+    "license": [
+        "GPL-3.0-or-later",
+        "proprietary"
+    ],
     "description": "Pimcore Monitoring - get monitoring information",
     "keywords": [
         "pimcore",

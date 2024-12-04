@@ -1,4 +1,7 @@
 # Pimcore Monitoring
+[![Software License](https://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Software License](https://img.shields.io/badge/license-DCL-white.svg?style=flat-square&color=%23ff5c5c)](LICENSE.md)
+
 Fetch health state of your pimcore installation.
 
 ### Release Plan
@@ -13,7 +16,7 @@ Fetch health state of your pimcore installation.
 
 ```json
 "require" : {
-    "dachcom-digital/monitoring" : "~4.0.0"
+    "dachcom-digital/monitoring" : "~4.1.0"
 }
 ```
 
@@ -53,12 +56,12 @@ Create a tagged `pimcore.monitoring.check` service and implement the `CheckInter
 - Installed AreaBricks
 - Available Users
 
+## Upgrade Info
+Before updating, please [check our upgrade notes!](UPGRADE.md)
+
 ## License
 **DACHCOM.DIGITAL AG**, Löwenhofstrasse 15, 9424 Rheineck, Schweiz  
 [dachcom.com](https://www.dachcom.com), dcdi@dachcom.ch  
 Copyright © 2024 DACHCOM.DIGITAL. All rights reserved.  
 
 For licensing details please visit [LICENSE.md](LICENSE.md)  
-
-## Upgrade Info
-Before updating, please [check our upgrade notes!](UPGRADE.md)
