@@ -1,5 +1,8 @@
 # Upgrade Notes
 
+## 4.1.0
+- [LICENSE] Dual-License with GPL and Dachcom Commercial License (DCL) added
+
 ## Migrating from Version 3.x to Version 4.0
 
 ### Global Changes
