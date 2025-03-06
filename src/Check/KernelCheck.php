@@ -20,7 +20,7 @@ class KernelCheck implements CheckInterface
     public function __construct(protected KernelInterface $kernel)
     {
     }
-    
+
     public function getCheckReportIdentifier(): string
     {
         return 'kernel';
@@ -29,8 +29,8 @@ class KernelCheck implements CheckInterface
     public function getCheckReport(): array
     {
         return [
-            'environment'  => $this->kernel->getEnvironment(),
-            'debug' => $this->kernel->isDebug(),
+            'environment' => $this->kernel->getEnvironment(),
+            'debug'       => $this->kernel->isDebug(),
         ];
     }
 }

@@ -1,9 +1,9 @@
 # Upgrade Notes
 
 ## 4.2.0
-- [FEATURE] PHP check
-- [FEATURE] New kernel check
-- 
+- [FEATURE] New Check Service: PHP Version / Some runtime configuration flags
+- [FEATURE] New Check Service: Kernel Environment and Debug state
+
 ## 4.1.0
 - [LICENSE] Dual-License with GPL and Dachcom Commercial License (DCL) added
 
