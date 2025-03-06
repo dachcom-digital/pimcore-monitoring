@@ -52,6 +52,8 @@ Create a tagged `pimcore.monitoring.check` service and implement the `CheckInter
 
 ## Available Checks
 - Pimcore version and revision
+- PHP (version, memory_limit and more)
+- Kernel (environment, debug)
 - Installed Bundles
 - Installed AreaBricks
 - Available Users

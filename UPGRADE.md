@@ -1,5 +1,9 @@
 # Upgrade Notes
 
+## 4.2.0
+- [FEATURE] PHP check
+- [FEATURE] New kernel check
+- 
 ## 4.1.0
 - [LICENSE] Dual-License with GPL and Dachcom Commercial License (DCL) added
 
