@@ -75,9 +75,9 @@ curl --data "apiCode=YOUR_API_CODE" https://www.your-domain.tld/monitoring/fetch
 ```
 
 #### Params
-- `onlyErrors`: only fetch logs with errors
-- `startingFrom`: only fetch logs newer than `Y-m-d H:i:s`
-- `limit`: limit log response
+- `onlyErrors`: only fetch logs with errors (Default `false`)
+- `startingFrom`: only fetch logs newer than `Y-m-d H:i:s`  (Default `null`)
+- `limit`: limit log response (Default `100`)
 
 ***
 

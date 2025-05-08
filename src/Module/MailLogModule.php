@@ -36,9 +36,11 @@ class MailLogModule
 
         return array_map(static function (Log $log) {
             return [
-                'id'       => $log->getId(),
-                'error'    => $log->getError(),
-                'sentDate' => Carbon::createFromTimestamp($log->getSentDate())->toIso8601String(),
+                'id'         => $log->getId(),
+                'documentId' => $log->getDocumentId(),
+                'subject'    => $log->getSubject(),
+                'error'      => $log->getError(),
+                'sentDate'   => Carbon::createFromTimestamp($log->getSentDate())->toIso8601String(),
             ];
         }, $logListing->getEmailLogs());
     }
