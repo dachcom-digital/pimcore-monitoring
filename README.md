@@ -16,7 +16,7 @@ Fetch health state of your pimcore installation.
 
 ```json
 "require" : {
-    "dachcom-digital/monitoring" : "~4.1.0"
+    "dachcom-digital/monitoring" : "~4.2.0"
 }
 ```
 
