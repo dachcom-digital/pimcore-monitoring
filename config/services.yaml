@@ -21,3 +21,12 @@ services:
         resource: '../src/Check/'
         exclude: ['../src/Check/Check.php']
         tags: [ 'pimcore.monitoring.check' ]
+
+
+    #
+    # Modules
+
+    MonitoringBundle\Module\:
+        autowire: true
+        autoconfigure: true
+        resource: '../src/Module/'

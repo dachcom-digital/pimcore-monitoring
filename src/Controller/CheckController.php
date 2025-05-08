@@ -15,6 +15,7 @@ namespace MonitoringBundle\Controller;
 
 use MonitoringBundle\Check\Check;
 use MonitoringBundle\Configuration\Configuration;
+use MonitoringBundle\Module\MailLogModule;
 use Pimcore\Controller\FrontendController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,6 +37,38 @@ class CheckController extends FrontendController
         }
 
         return new JsonResponse($check->dispatchCheck(), 200);
+    }
+
+    /**
+     * @throws AccessDeniedHttpException
+     */
+    public function fetchEmailLogAction(Request $request, MailLogModule $mailLogModule): JsonResponse
+    {
+        if (!$this->checkAuth($request)) {
+            throw new AccessDeniedHttpException();
+        }
+
+        if (!$this->configuration->moduleIsEnabled('email_log')) {
+            throw new AccessDeniedHttpException();
+        }
+
+        $onlyErrors = $request->request->get('onlyErrors', 'false');
+        $startingFrom = $request->request->get('startingFrom', null);
+        $limit = $request->request->get('limit', null);
+
+        $parameters = [
+            'onlyErrors'   => $onlyErrors === 'true',
+            'startingFrom' => $startingFrom,
+            'limit'        => $limit,
+        ];
+
+        try {
+            $data = $mailLogModule->dispatch($parameters);
+        } catch (\Throwable) {
+            return new JsonResponse(['error' => 'error while dispatching module'], 500);
+        }
+
+        return new JsonResponse($data, 200);
     }
 
     protected function checkAuth(Request $request): bool
