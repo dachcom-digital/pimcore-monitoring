@@ -58,12 +58,35 @@ Create a tagged `pimcore.monitoring.check` service and implement the `CheckInter
 - Installed AreaBricks
 - Available Users
 
+***
+
+## Modules
+
+### Email Log Module
+
+```bash
+monitoring:
+    modules:
+        email_log: true # disabled by default
+```
+
+```bash
+curl --data "apiCode=YOUR_API_CODE" https://www.your-domain.tld/monitoring/fetch-email-log
+```
+
+#### Params
+- `onlyErrors`: only fetch logs with errors (Default `false`)
+- `startingFrom`: only fetch logs newer than `Y-m-d H:i:s`  (Default `null`)
+- `limit`: limit log response (Default `100`)
+
+***
+
 ## Upgrade Info
 Before updating, please [check our upgrade notes!](UPGRADE.md)
 
 ## License
 **DACHCOM.DIGITAL AG**, Löwenhofstrasse 15, 9424 Rheineck, Schweiz  
 [dachcom.com](https://www.dachcom.com), dcdi@dachcom.ch  
-Copyright © 2024 DACHCOM.DIGITAL. All rights reserved.  
+Copyright © 2025 DACHCOM.DIGITAL. All rights reserved.  
 
 For licensing details please visit [LICENSE.md](LICENSE.md)  

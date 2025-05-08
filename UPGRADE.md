@@ -1,5 +1,8 @@
 # Upgrade Notes
 
+## 4.3.0
+- [FEATURE] Add Email Log Module Endpoint
+
 ## 4.2.0
 - [FEATURE] New Check Service: PHP Version / Some runtime configuration flags
 - [FEATURE] New Check Service: Kernel Environment and Debug state

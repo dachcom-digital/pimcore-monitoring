@@ -27,6 +27,12 @@ class Configuration implements ConfigurationInterface
             ->addDefaultsIfNotSet()
             ->children()
                 ->scalarNode('api_code')->defaultNull()->end()
+                ->arrayNode('modules')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->booleanNode('email_log')->defaultValue(false)->end()
+                    ->end()
+                ->end()
             ->end();
 
         return $treeBuilder;

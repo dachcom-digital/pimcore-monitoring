@@ -1,3 +1,7 @@
 monitoring.fetch:
     path: /monitoring/fetch
     controller: MonitoringBundle\Controller\CheckController::fetchAction
+
+monitoring.fetch_email_log:
+    path: /monitoring/fetch-email-log
+    controller: MonitoringBundle\Controller\CheckController::fetchEmailLogAction

@@ -26,4 +26,9 @@ class Configuration
     {
         return $this->config['api_code'];
     }
+
+    public function moduleIsEnabled(string $module): bool
+    {
+        return $this->config['modules'][$module] === true;
+    }
 }
