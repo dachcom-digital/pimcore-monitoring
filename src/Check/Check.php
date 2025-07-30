@@ -19,11 +19,16 @@ class Check
     {
     }
 
-    public function dispatchCheck(): array
+    public function dispatchCheck(array $filter = []): array
     {
         $checks = [];
         /** @var CheckInterface $check */
         foreach ($this->checks as $check) {
+
+            if (count($filter) > 0 && !in_array($check->getCheckReportIdentifier(), $filter, true)) {
+                continue;
+            }
+
             $checks[$check->getCheckReportIdentifier()] = $check->getCheckReport();
         }
 

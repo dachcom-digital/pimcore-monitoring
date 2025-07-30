@@ -31,6 +31,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->booleanNode('email_log')->defaultValue(false)->end()
+                        ->booleanNode('heartbeat')->defaultValue(false)->end()
                     ->end()
                 ->end()
             ->end();

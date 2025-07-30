@@ -1,5 +1,9 @@
 # Upgrade Notes
 
+## 4.4.0
+- [FEATURE] Add Heartbeat Feature
+- [FEATURE] Add Check Filter
+
 ## 4.3.0
 - [FEATURE] Add Email Log Module Endpoint
 
