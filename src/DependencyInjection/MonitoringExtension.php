@@ -33,5 +33,7 @@ class MonitoringExtension extends Extension
 
         $configManagerDefinition = $container->getDefinition(\MonitoringBundle\Configuration\Configuration::class);
         $configManagerDefinition->addMethodCall('setConfig', [$config]);
+
+        $container->setParameter('monitoring.heartbeat.enabled', $config['modules']['heartbeat'] === true);
     }
 }

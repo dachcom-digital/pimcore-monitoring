@@ -32,11 +32,14 @@ class CheckController extends FrontendController
      */
     public function fetchAction(Request $request, Check $check): JsonResponse
     {
+        $checkFilter = $request->query->get('filter');
+        $filter = empty($checkFilter) ? [] : explode(',', $checkFilter);
+
         if (!$this->checkAuth($request)) {
             throw new AccessDeniedHttpException();
         }
 
-        return new JsonResponse($check->dispatchCheck(), 200);
+        return new JsonResponse($check->dispatchCheck($filter), 200);
     }
 
     /**

@@ -1,0 +1,9 @@
+services:
+
+    MonitoringBundle\Module\Heartbeat\HeartBeatTask:
+        tags:
+            - { name: pimcore.maintenance.task, type: monitoring_heartbeat }
+
+    MonitoringBundle\Module\Heartbeat\HeartBeatCheck:
+        tags:
+            - { name: pimcore.monitoring.check }

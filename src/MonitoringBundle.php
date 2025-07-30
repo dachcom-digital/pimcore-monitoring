@@ -13,8 +13,11 @@
 
 namespace MonitoringBundle;
 
+use MonitoringBundle\DependencyInjection\CompilerPass\ModulesPass;
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
 use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class MonitoringBundle extends AbstractPimcoreBundle
 {
@@ -30,5 +33,9 @@ class MonitoringBundle extends AbstractPimcoreBundle
     protected function getComposerPackageName(): string
     {
         return self::PACKAGE_NAME;
+    }
+    public function build(ContainerBuilder $container): void
+    {
+        $container->addCompilerPass(new ModulesPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 255);
     }
 }
